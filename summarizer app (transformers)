@@ -1,0 +1,38 @@
+from transformers import pipeline
+
+# Load the summarization pipeline
+summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+
+# Text to summarize
+text = """
+Artificial Intelligence (AI) is a rapidly growing field of computer science 
+that aims to create systems capable of performing tasks that typically require human intelligence. 
+These tasks include speech recognition, problem-solving, learning, and decision-making. 
+AI has applications in various industries, including healthcare, finance, and transportation, 
+and its advancements continue to transform our daily lives.
+"""
+
+# Summarize the text
+summary = summarizer(text, max_length=50, min_length=25, do_sample=False)
+print("Summary:", summary[0]['summary_text'])
+
+
+from transformers import PegasusForConditionalGeneration, PegasusTokenizer
+
+model_name = "google/pegasus-xsum"
+tokenizer = PegasusTokenizer.from_pretrained(model_name)
+model = PegasusForConditionalGeneration.from_pretrained(model_name)
+
+text = """
+The COVID-19 pandemic significantly impacted global economies. 
+Governments worldwide implemented various measures to curb its spread, 
+including lockdowns, vaccination drives, and financial aid packages.
+"""
+
+# Tokenize input
+inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=1024)
+
+# Generate summary
+summary_ids = model.generate(inputs["input_ids"], max_length=50, min_length=25, length_penalty=2.0)
+summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+print("Summary:", summary)
