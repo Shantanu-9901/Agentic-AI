@@ -1,0 +1,39 @@
+import streamlit as st
+from transformers import pipeline
+
+# Set up the summarization pipeline
+@st.cache_resource
+def load_summarizer():
+    return pipeline("summarization", model="facebook/bart-large-cnn")
+
+summarizer = load_summarizer()
+
+# Streamlit app
+def main():
+    st.title("Text Summarization App")
+    st.write("This app summarizes long text into a concise summary using state-of-the-art transformer models.")
+
+    # Sidebar
+    st.sidebar.header("Controls")
+    max_length = st.sidebar.slider("Maximum Summary Length", 50, 300, 150)
+    min_length = st.sidebar.slider("Minimum Summary Length", 20, 100, 50)
+
+    # Input text area
+    user_input = st.text_area("Enter the text you want to summarize:", height=200)
+
+    # Button to summarize
+    if st.button("Summarize"):
+        if user_input.strip():
+            with st.spinner("Generating summary..."):
+                summary = summarizer(user_input, max_length=max_length, min_length=min_length, do_sample=False)
+                st.subheader("Summary:")
+                st.write(summary[0]['summary_text'])
+        else:
+            st.error("Please enter some text to summarize!")
+
+    # Button to clear output
+    if st.button("Clear Output"):
+        st.experimental_rerun()
+
+if __name__ == "__main__":
+    main()
