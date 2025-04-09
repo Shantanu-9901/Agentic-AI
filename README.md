@@ -35,7 +35,7 @@ These systems often involve:
 
 ```bash
 # Clone the repo
-git clone https://github.com/ShantanuPatil/agentic-ai-projects.git
+git clone https://github.com/Shantanu-9901/Agentic-AI-Projects.git
 cd agentic-ai-projects
 
 # (Recommended) Create a virtual environment
