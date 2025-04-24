@@ -1,6 +1,6 @@
-# 🤖 Agentic AI Projects
+# 🤖 Agentic AI 
 
-Welcome to the **Agentic AI Projects** repository by **Shantanu Patil**. This repository showcases real-world applications, research experiments, and demos built using **Agentic AI** principles powered by frameworks like **CrewAI**, **LangChain**, **Neo4j**, and **LLM APIs (Mistral, OpenAI, Claude)**.
+Welcome to the **Agentic AI** repository by **Shantanu Patil**. This repository showcases real-world applications, research experiments, and demos built using **Agentic AI** principles powered by frameworks like **CrewAI**, **LangChain**, **Neo4j**, and **LLM APIs (Mistral, OpenAI, Claude)**.
 
 > 🚀 Our goal: Build autonomous, goal-driven agents that solve complex tasks with reasoning, memory, and collaboration.
 
