@@ -1,17 +1,13 @@
 question = "Pick a business area that might be worth it to explore for Agentic AI opportunities?"
 messages = [{"role": "user", "content": question}]
 
-messages = [{"role": "user", "content": question}]
-
 
 response = openai.chat.completions.create(
             model="gpt-4.1-nano",
             messages=messages
-
 )
-
 business_idea = response.choices[0].message.content
 
-from IPython.display import Markdown, display
 
+from IPython.display import Markdown, display
 display(Markdown(business_idea))
